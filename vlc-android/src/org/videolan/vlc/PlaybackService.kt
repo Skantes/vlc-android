@@ -340,6 +340,10 @@ class PlaybackService : MediaBrowserServiceCompat(), CoroutineScope, LifecycleOw
         @MainThread
         get() = playlistManager.player.getLength()
 
+    val stats: Media.Stats?
+        @MainThread
+        get() = playlistManager.player.getMedia()?.stats
+
     val lastStats: Media.Stats?
         get() = playlistManager.player.previousMediaStats
 

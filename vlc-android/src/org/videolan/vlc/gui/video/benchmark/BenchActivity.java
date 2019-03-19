@@ -288,6 +288,11 @@ public class BenchActivity extends ShallowVideoPlayer {
                 setTimeout();
                 break;
             case MediaPlayer.Event.PositionChanged:
+                Media.Stats stats = mService.getStats();
+                if (stats != null) 
+                    Log.w(TAG, "onMediaPlayerEvent: readBytes" + stats.readBytes);
+                else
+                    Log.w(TAG, "onMediaPlayerEvent: No stats");
                 float pos = event.getPositionChanged();
                 if (!mIsScreenshot) {
                     if (pos != mPosition) {
@@ -309,7 +314,7 @@ public class BenchActivity extends ShallowVideoPlayer {
                         if (mIsScreenshot) {
                             mService.pause();
                             DisplayMetrics metrics = new DisplayMetrics();
-                            getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
+                            getWindowManager().getDefaultDisplay().getRealMetricas(metrics);
                             mWidth = metrics.widthPixels;
                             mHeight = metrics.heightPixels;
                             mDensity = metrics.densityDpi;
